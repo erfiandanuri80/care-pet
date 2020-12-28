@@ -4,21 +4,30 @@ if (!isset($_SESSION["name_user"])) {
     header("location: login.php");
     exit;
 }
-$id_question = $_GET['id_question'];
-$error = "";
-$contentErr = "";
 include "system/validate.php";
 include "system/connect.php";
+$error = "";
+$contentErr = "";
+if (!isset($_SESSION["id_question"])) {
+    $_SESSION["id_question"] = $_GET['id_question'];
+} else {
+    $id_question = $_SESSION["id_question"];
+}
+
 if ($_POST) {
     required($contentErr, $_POST['content_question']);
     if ($contentErr == "") {
-        $statement = $db->prepare("UPDATE question SET content_question=:content_question WHERE id_question=$id_question");
-        $statement->bindValue(':content_quesrion', $_POST['content_question']);
-        $statement->bindValue(':id_question', $_POST['$id_question']);
+        echo "$error.gaagal";
+        $statement = $db->prepare("UPDATE question SET content_question=:content_question WHERE id_question=:id_question");
+        $statement->bindValue(':content_question', $_POST['content_question']);
+        $statement->bindValue(':id_question', $_SESSION['id_question']);
         $statement->execute();
 
+        unset($_SESSION['id_question']);
         header("location: index.php");
         exit();
+    } else {
+        echo $contentErr;
     }
 }
 ?>
@@ -55,7 +64,7 @@ if ($_POST) {
                         <form action="edit.php" method="POST">
                             <div class="field">
                                 <br>
-                                <input type="text" name="id_question" value="<?php echo "{$row['id_question']}"; ?>" disabled hidden>
+                                <input type="text" name="id_question" value="<?php echo "{$row['id_question']}"; ?>" disabled>
                             </div>
                             <div class="field">
                                 <label>Topic</label>
@@ -65,6 +74,8 @@ if ($_POST) {
                             <div class="field">
                                 <label>Pertanyaan</label>
                                 <br>
+                                <div class="error" style="color: red;"> <?php echo $contentErr;
+                                                                        ?> </div>
                                 <textarea name="content_question" cols="30" rows="15"><?php echo "{$row['content_question']}"; ?></textarea>
                             </div>
                             <input type="submit" value="Submit" class="btn-green">
