@@ -1,8 +1,5 @@
 <?php
-// PENGECEKAN SESSION APAKAH SUDAH ADA SESSION BERJALAN ATAU TIDAK (NOTE: KARENA MENGGUNAKAN PHP 8.X.X)
-if (!isset($_SESSION)) {
-    session_start();
-}
+session_start();
 // PENGECEKAN APAKAH BERDA PADA SESSION USER 
 if (isset($_SESSION['name_user'])) {
     header("location: index.php");
@@ -50,6 +47,7 @@ if ($_POST) {
 </head>
 
 <body>
+    <!--HALAMAN LOGIN-->
     <div class="container">
         <div class="content-left">
             <a href="index.php"><img src="assets/img/logo.png"></a>
@@ -57,6 +55,7 @@ if ($_POST) {
         </div>
         <div class="content-right">
             <div class="form">
+                <!--FORM LOGIN-->
                 <form action="login.php" method="POST">
                     <div class="success-signup" style="color: white;"><?php ?></div>
                     <div class="field">
@@ -69,7 +68,7 @@ if ($_POST) {
                     <div class="field">
                         <label>Password</label>
                         <br>
-                        <input type="text" name="password_user" class="inp" placeholder="&emsp;********" autocomplete="current-password">
+                        <input type="text" name="password_user" class="inp" placeholder="&emsp;********">
                         <div class="error" style="color: red;"> <?php echo $passErr; ?></div>
                     </div>
                     <div class="error" style="color: red;"> <?php echo $error;

@@ -1,3 +1,4 @@
+<!--BAGIAN CONTENT HERO/WELCOMING PAGE USER(EXPERT)-->
 <div class="container">
     <div class="user-content">
         <div class="cont-left" style="width: 94%;">
@@ -17,8 +18,10 @@
 
     </div>
 </div>
+<!--PEMBATAS-->
 <div class="wrapper">&emsp;</div>
 
+<!--BAGIAN TAMPILAN SETELAH HERO YANG BERISI BUTTON DAN FIELD DISKUSI-->
 <div class="container">
     <div class="question-box">
         <h1>Semua Pertanyaan</h1>

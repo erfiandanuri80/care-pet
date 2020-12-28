@@ -4,7 +4,7 @@ if (!isset($_SESSION["name_user"])) {
     header("location: login.php");
     exit;
 }
-
+//IMPORT MODUL KONEKSI DAN VALIDASI
 include "system/validate.php";
 include "system/connect.php";
 
@@ -13,11 +13,13 @@ $usernameErr = $phoneErr = $passErr =  ""; //deklarasi variabel validasi inputan
 
 
 if ($_POST) {
+    //CEK VALIDASI
     validUsername($usernameErr, 'name_user');
     validPhone($phoneErr, 'phone_user');
     validPassword($passErr, 'password_user');
 
     if ($usernameErr == "" && $phoneErr == "" && $passErr == "") {
+        //JIKA BERHASIL MENGGANTI NAMA SESSION YANG BARU SETELAH DIUBAH
         unset($_SESSION['name_user']);
         $statement = $db->prepare("UPDATE users SET name_user=:name_user, phone_user=:phone_user, password_user= SHA2(:password_user,0) WHERE id_user=:id_user");
         $statement->bindValue(":name_user", $_POST['name_user']);
@@ -27,11 +29,8 @@ if ($_POST) {
         $statement->execute();
 
         $_SESSION['name_user'] = $_POST['name_user'];
-
         header("location: index.php");
         exit();
-    } else {
-        echo $error;
     }
 }
 
@@ -47,25 +46,28 @@ if ($_POST) {
 </head>
 
 <body>
+    <!--HALAMAN EDIT PROFIL-->
+
     <div class="container">
         <div class="content-left">
             <a href="index.php"><img src="assets/img/logo.png"></a>
             <div class="title">PRO- <br>FILE</div>
         </div>
         <?php
+        //INISIALISASI SESI AKUN
         $name_session = $_SESSION['name_user'];
         $statement = $db->prepare("SELECT * FROM users WHERE name_user=:name_user");
         $statement->bindValue(":name_user", $name_session);
         $statement->execute();
 
         foreach ($statement as $row) {
-
+            //MENAMPILKAN DATA SESI USERS
         ?>
             <div class="content-right">
                 <div class="form">
                     <a href="profile.php">
                         < Kembali</a> <br>
-
+                            <!--FORM ISIAN EDIT PROFILE-->
                             <form action="editprofile.php" method="POST">
                                 <div class="field">
                                     <input type="text" name="id_user" class="inp" value="<?php echo "{$row['id_user']}"; ?>" hidden>

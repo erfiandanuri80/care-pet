@@ -1,7 +1,5 @@
 <?php
-if (!isset($_SESSION)) {
-    session_start();
-}
+
 if (!isset($_SESSION["name_user"])) {
     header("location: login.php");
     exit;
@@ -18,8 +16,12 @@ if (!isset($_SESSION["name_user"])) {
 </head>
 
 <body>
+
     <?php
+    //HALAMAN HOME USER
+    //IMPORT NAVBAR SESUDAH LOGIN(VERSI USER)
     include "pages/layout/userHeader.php";
+    //CEK konten SESI USER (2=EXPERT)
     if ($_SESSION['status'] == 2) {
         include "pages/expert/userContent.php";
     } else {
@@ -28,8 +30,9 @@ if (!isset($_SESSION["name_user"])) {
     ?>
 
     <div class="wrapper">&emsp;</div>
-
-    <?php include "pages/layout/footer.php"; ?>
+    <?php
+    //import footer
+    include "pages/layout/footer.php"; ?>
 </body>
 
 </html>

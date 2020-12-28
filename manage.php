@@ -1,5 +1,6 @@
 <?php
 session_start();
+//PENGECEKAN LOGIN SESSION
 if (!isset($_SESSION["name_user"])) {
     header("location: login.php");
     exit;
@@ -17,6 +18,7 @@ if (!isset($_SESSION["name_user"])) {
 
 <body>
     <?php
+    //IMPORT NAVBAR USER
     include "pages/layout/userHeader.php";
     ?>
 
@@ -25,12 +27,17 @@ if (!isset($_SESSION["name_user"])) {
         <div class="question-box">
             <a href="index.php" class="btn-white">kembali ke Diskusi</a>
         </div>
-        <?php include "pages/layout/admDisscussion.php"; ?>
+
+        <?php
+        //IMPORT FIELD DISKUSI BERDASARKAN FILTER 
+        include "pages/layout/admDisscussion.php"; ?>
     </div>
 
 
 
-    <?php include "pages/layout/footer.php"; ?>
+    <?php
+    //IMPORT FOOTER
+    include "pages/layout/footer.php"; ?>
 </body>
 
 </html>

@@ -1,5 +1,6 @@
 <?php
 session_start();
+//PENGECEKAN SESSION LOGIN
 if (!isset($_SESSION["name_user"])) {
     header("location: login.php");
     exit;
@@ -17,14 +18,16 @@ include "system/connect.php";
 </head>
 
 <body>
+    <!--HALAMAN PROFILE-->
     <div class="container">
         <div class="content-left">
             <a href="index.php"><img src="assets/img/logo.png"></a>
             <div class="title">PRO-<br>FILE</div>
         </div>
         <?php
-        $name_session = $_SESSION['name_user'];
 
+        $name_session = $_SESSION['name_user'];
+        //LOAD DATA PROFILE BERDASARKAN SESI NAMA USER
         $statement = $db->prepare("SELECT * FROM users WHERE name_user=:name_user");
         $statement->bindValue(":name_user", $name_session);
         $statement->execute();
@@ -35,6 +38,7 @@ include "system/connect.php";
 
             <div class="content-right">
                 <div class="form">
+                    <!--MENAMPILKAN DATA ISIAN PROFILE-->
                     <div class="field">
                         <label>Username</label>
                         <br>
@@ -57,7 +61,9 @@ include "system/connect.php";
                     </div>
                     <br>
                 <?php } ?>
+                <!--BUTTON EDIT PROFILE-->
                 <a href="editprofile.php" class="btn-blue"> Edit Profile</a>
+                <!--BUTTON LOG OUT-->
                 <a href="logout.php" class="btn-blue">Log out</a>
 
                 </div>

@@ -1,42 +1,49 @@
 <?php
-if (!isset($_SESSION)) {
-    session_start();
-}
+session_start();
+//PENGECEKAN LOGIN USER
 if (!isset($_SESSION["name_user"])) {
     header("location: login.php");
     exit;
 }
+//IMPORT MODULE KONEKSI DAN VALIDASI
 include "system/validate.php";
 include "system/connect.php";
 
+//INISIALISASI VARIABEL ERROR
 $error = "";
 $contentErr = "";
 
+//PROSES SAAT MEMBUAT PERTANYAAN
 if ($_POST) {
     required($contentErr, "content_question");
-    if ($contentErr = "") {
+    //JIKA TIDAK ADA ERROR DI INPUTAN
+    if ($contentErr == "") {
+        //(TRICKY CONSEPT)
+        //LANGKAH PERTAMA INSERT TOPIC DARI PERTANYAAN TSB
         $statementTopic = $db->prepare("INSERT INTO topic (name_topic) VALUES (:name_topic)");
         $statementTopic->bindValue(":name_topic", $_POST['name_topic']);
         $statementTopic->execute();
+        //AMBIL NILAI ID NYA DENGAN CARA AMBIL DATA TERAKHIR 
         $statementIdTopic = $db->query("SELECT * FROM topic ORDER BY id_topic DESC LIMIT 1");
         foreach ($statementIdTopic as $row) {
+            //LANGKAH KEDUA INSERT PERTANYAANNYA DAN TOPIC 
             $statement = $db->prepare("INSERT INTO question (id_user, id_topic, content_question) VALUES (:id_user ,:id_topic, :content_question)");
             $statement->bindValue(':id_user', $_SESSION['id_user']);
             $statement->bindValue(':id_topic', $row['id_topic']);
-            $statement->bindValue(':content_question', nl2br($_POST['content_question']));
+            $statement->bindValue(':content_question', $_POST['content_question']);
             $statement->execute();
         }
-        $statementIdQuestion = $db->query("SELECT * FROM ORDER BY id_question DESC LIMIT 1");
+        //AMBIL NILAI ID PERTANYAAN NYA (KARENA AUTO_INCREAMENT PASTI ID YANG TERAKHIR)
+        $statementIdQuestion = $db->query("SELECT * FROM question ORDER BY id_question DESC LIMIT 1");
         foreach ($statementIdQuestion as $row1) {
-            $statementAnswer = $db->prepare("INSERT INTO answer (id_user,id_question) VALUES (2,:id_question)");
+            //LANGKAH KETIGA MEMBUAT JAWABAN KOSONG(SEPERTI WADAH)
+            $statementAnswer = $db->prepare("INSERT INTO answer (id_user,id_question, content_answer) VALUES (1,:id_question, '')");
             $statementAnswer->bindValue(":id_question", $row1['id_question']);
             $statementAnswer->execute();
         }
 
         header("location: index.php");
         exit();
-    } else {
-        echo $error;
     }
 } ?>
 <!DOCTYPE html>
@@ -51,6 +58,7 @@ if ($_POST) {
 
 <body>
     <?php
+    //import navbar
     include "pages/layout/userHeader.php"; ?>
 
     <div class="wrapper">&emsp;</div>
@@ -61,10 +69,15 @@ if ($_POST) {
         </div>
         <div class="wrapper"></div>
         &emsp;&emsp;&emsp;&emsp;
-        <?php include "pages/client/addQuestion.php"; ?>
+
+        <?php
+        //IMPORT SECTION BUAT PERTANYAAN
+        include "pages/client/addQuestion.php"; ?>
     </div>
 
-    <?php include "pages/layout/footer.php";
+    <?php
+    //IMPORT FOOTER
+    include "pages/layout/footer.php";
     ?>
 </body>
 

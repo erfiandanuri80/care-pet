@@ -82,9 +82,7 @@ if (!isset($_SESSION["name_user"])) {
             if ($_SESSION['status'] == 2) {
                 echo "<div class='field'>";
                 echo "<br>";
-
-                echo "<a href='edit.php?id_question=$id_question' class=btn-green> edit</a>";
-
+                echo "<a href='edit.php?id_question=$id_question' class=btn-green>edit</a>";
                 echo " </div>";
             }
 

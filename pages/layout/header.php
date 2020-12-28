@@ -1,3 +1,4 @@
+<!--BAGIAN NAVBAR SEBELUM LOGIN-->
 <div class="container">
     <nav class="navbar">
         <div class="navbar-left">

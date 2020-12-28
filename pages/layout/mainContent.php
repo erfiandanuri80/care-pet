@@ -11,7 +11,7 @@
 
            </div>
            <div class="cont-right">
-               <img src="assets/img/hero.jpg" alt="hero">
+               <img src="assets/img/hero.jpg" alt="https://www.jesuisunanimal.fr/wp-content/uploads/2019/03/adoption-chien-chat.jpg">
            </div>
        </div>
    </div>

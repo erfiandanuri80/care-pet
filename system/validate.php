@@ -1,4 +1,5 @@
 <?php
+//KUMPULAN FUNGSI VALIDASI MASUKAN
 
 // fungsi pada login
 
@@ -32,6 +33,7 @@ function authacc($email, $password)
 
     return $statement->rowCount() > 0;
 }
+
 //fungsi required
 function required(&$error, $field_name)
 {
@@ -42,7 +44,7 @@ function required(&$error, $field_name)
     }
 }
 //fungsi pada signup
-
+//VALIDASI STANDARD EMAIL DAN ISIAN REQUIRED
 function validEmail(&$error, $field_name)
 {
     if (!filter_var($_POST[$field_name], FILTER_VALIDATE_EMAIL)) {
@@ -53,6 +55,8 @@ function validEmail(&$error, $field_name)
         $error = "";
     }
 }
+
+//VALIDASI ALPHABET DAN ISIAN REQUIRED
 function validUsername(&$error, $field_name)
 {
     if (!isset($_POST[$field_name]) || empty($_POST[$field_name])) {
@@ -63,25 +67,26 @@ function validUsername(&$error, $field_name)
         $error = "";
     }
 }
-
+//VALIDASI NUMERIK, PANJANG DIGIT DAN REQUIRED
 function validPhone(&$error, $field_name)
 {
     if (!isset($_POST[$field_name]) || empty($_POST[$field_name])) {
         $error = "this field is required";
     } else if (!is_numeric($_POST[$field_name])) {
         $error = " phone number Must be Numeric";
-    } else if (!strlen($_POST[$field_name]) > 10 and (!strlen($_POST[$field_name]) < 13)) {
+    } else if (strlen($_POST[$field_name]) < 11) {
         $error = "must be valid number";
     } else {
         $error = "";
     }
 }
 
+//VALIDASI PANJANG KARAKTER , ALFANUMERIK ,DAN REQUIRED
 function validPassword(&$error, $field_name)
 {
     if (!isset($_POST[$field_name]) || empty($_POST[$field_name])) {
         $error = "This field is required";
-    } else if (!strlen($_POST[$field_name]) > 7) {
+    } else if (strlen($_POST[$field_name]) < 7) {
         $error = "must be at least 8 characters";
     } else {
         $error = "";

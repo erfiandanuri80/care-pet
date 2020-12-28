@@ -1,5 +1,9 @@
 <?php
+//BAGIAN FIELD DISKUSI DIMANA YANG MENERAPKAN FILTER
+
+//IMPORT DATABSE
 include "system/connect.php";
+// JIKA STATUS CLIENT DAN MEMFILTER BAGIAN PERTANYAAN MANA SAJA YANG TELAH DIBUAT
 if ($_SESSION['status'] == 1) {
 ?>
     <div class="sidebar">
@@ -16,13 +20,18 @@ if ($_SESSION['status'] == 1) {
     </div>&emsp;&emsp;&emsp;&emsp;
     <div class="disscussion" id="disscussion">
         <?php
+        //filter dengan berdasarkan id user sessionnya
         $id_user = $_SESSION['id_user'];
         $statement1 = $db->prepare("SELECT * FROM question a, topic b, users c,answer d WHERE a.id_user=c.id_user AND a.id_topic=b.id_topic AND a.id_question=d.id_question AND a.id_user=:id_user");
         $statement1->bindValue(":id_user", $id_user);
         $statement1->execute();
 
+        //Menampilkan field diskusinya
         foreach ($statement1 as $row) {
             $id_question = $row['id_question'];
+
+            //kondisi pertanyaan mana yang belum dijawab oleh expert
+            //jika belum
             if ($row['content_answer'] == Null) {
                 echo "<div class='disscuss-field'>";
                 echo "<div class='topic-title'>";
@@ -30,16 +39,19 @@ if ($_SESSION['status'] == 1) {
                 echo "<br>Oleh : {$row['name_user']}</p></div>";
                 echo "<hr><div class='content-disscuss'>";
                 echo "<p>{$row['content_question']}</p>";
+                //button ke halaman detailnya
                 echo "<br><a href='view.php?id_question=$id_question'>Lihat Detail</a>";
                 echo "</div>";
                 echo "</div>";
             } else {
+                //jika sudah terjawab akan ada tulisan seperti yang dibawah ini
                 echo "<div class='disscuss-field'><br><i style='color:black;'>Telah dijawab oleh Expert</i>";
                 echo "<div class='topic-title'>";
                 echo "<p><b>{$row['id_question']}-{$row['name_topic']}</b>";
                 echo "<br>Oleh : {$row['name_user']}</p></div>";
                 echo "<hr><div class='content-disscuss'>";
                 echo "<p>{$row['content_question']}</p>";
+                //button ke halaman detailnya
                 echo "<br><a href='view.php?id_question=$id_question'>Lihat Detail</a>";
                 echo "</div>";
                 echo "</div>";

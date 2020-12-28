@@ -4,16 +4,19 @@ if (!isset($_SESSION["name_user"])) {
     header("location: login.php");
     exit;
 }
+//IMPORT MODUL KONEKSI DAN VALIDASI
 include "system/connect.php";
 include "system/validate.php";
 
 $error = "";
 $answerErr = "";
 
-
+//PROSES INPUTAN ANSWER
 if ($_POST) {
     required($answerErr, 'content_answer');
     if ($answerErr == "") {
+        //SETELAH DIAWAL SAAT CLIENT BUAT PERTANYAAN BESERTA TEMPLATE PASSWORD
+        //SO, REPLY EXPERT HANYA MELAKUKAN UPDATE JAWABAN BARU (CEK COMPOSE.PHP)
         $statement = $db->prepare("UPDATE answer SET content_answer=:content_answer, id_user=:id_user WHERE id_question=:id_question");
         $statement->bindValue(':id_question', $_POST['id_question']);
         $statement->bindValue(':id_user', $_POST['id_user']);
@@ -39,6 +42,7 @@ if ($_POST) {
 
 <body>
     <?php
+    //import navbar user
     include "pages/layout/userHeader.php"; ?>
 
     <div class="wrapper">&emsp;</div>
@@ -51,7 +55,7 @@ if ($_POST) {
         &emsp;&emsp;&emsp;&emsp;
 
         <?php
-
+        //IMPORT BAGIAN REPLY 
         include "pages/expert/replyQuestion.php"; ?>
     </div>
 

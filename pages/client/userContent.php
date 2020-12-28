@@ -1,3 +1,4 @@
+<!--BAGIAN CONTENT HERO/WELCOMING PAGE USER(CLIENT)-->
 <div class="container">
     <div class="user-content">
         <div class="cont-left" style="width: 94%;">
@@ -16,7 +17,11 @@
 
     </div>
 </div>
+<!--PEMBATAS-->
 <div class="wrapper">&emsp;</div>
+<!--END PEMBATAS-->
+
+<!--BAGIAN TAMPILAN SETELAH HERO YANG BERISI BUTTON DAN FIELD DISKUSI-->
 <div class="container">
     <div class="question-box">
         <h1>Tanyakan Sesuatu</h1>
@@ -24,5 +29,7 @@
         <a href="manage.php" id="filterUser" class=" btn-blue">Lihat Pertanyaan yang anda buat</a>
     </div>
     <?php
+
+    //IMPORT FIELD DISKUSI 
     include "pages/layout/disscussion.php"; ?>
 </div>

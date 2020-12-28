@@ -1,13 +1,19 @@
 <?php
 session_start();
+
+//PENGECEKAN LOGIN SESSIOM
 if (!isset($_SESSION["name_user"])) {
     header("location: login.php");
     exit;
 }
+//IMPORT MODUL KONEKSI DAN VALIDASI
 include "system/validate.php";
 include "system/connect.php";
+
 $error = "";
 $contentErr = "";
+
+//PENGAMBILAN NILAI VARIABEL DARI URL
 if (!isset($_SESSION["id_question"])) {
     $_SESSION["id_question"] = $_GET['id_question'];
 } else {
@@ -17,7 +23,6 @@ if (!isset($_SESSION["id_question"])) {
 if ($_POST) {
     required($contentErr, $_POST['content_question']);
     if ($contentErr == "") {
-        echo "$error.gaagal";
         $statement = $db->prepare("UPDATE question SET content_question=:content_question WHERE id_question=:id_question");
         $statement->bindValue(':content_question', $_POST['content_question']);
         $statement->bindValue(':id_question', $_SESSION['id_question']);
@@ -55,6 +60,7 @@ if ($_POST) {
         &emsp;&emsp;&emsp;&emsp;
         <?php
         if ($_SESSION['status'] == 1) {
+            $id_question = $_SESSION["id_question"];
             $sql = $db->query("SELECT * FROM question a, users b, topic c WHERE a.id_user=b.id_user AND c.id_topic=a.id_topic AND id_question=$id_question");
             foreach ($sql as $row) {
         ?>
