@@ -82,22 +82,18 @@ if (!isset($_SESSION["name_user"])) {
             if ($_SESSION['status'] == 2) {
                 echo "<div class='field'>";
                 echo "<br>";
-                echo "<a href='reply.php?id_question=$id_question' class=btn-green> Reply</a>";
+
+                echo "<a href='edit.php?id_question=$id_question' class=btn-green> edit</a>";
+
                 echo " </div>";
             }
 
             ?>
         </div>
     </div>
-
-
-
-    <div class="container">
-        <div class="footer">
-            <p>Copyright@2020 Care-Pet.Ltd <br> PAW2020-1-A05</p>
-
-        </div>
-    </div>
+    <!--FOOTER -->
+    <?php include "pages/layout/footer.php"; ?>
 </body>
+<!-- END FOOTER -->
 
 </html>

@@ -17,21 +17,33 @@ if ($_SESSION['status'] == 1) {
     <div class="disscussion" id="disscussion">
         <?php
         $id_user = $_SESSION['id_user'];
-        $statement1 = $db->prepare("SELECT * FROM question a, topic b, users c WHERE a.id_user=c.id_user AND a.id_topic=b.id_topic AND a.id_user=:id_user");
+        $statement1 = $db->prepare("SELECT * FROM question a, topic b, users c,answer d WHERE a.id_user=c.id_user AND a.id_topic=b.id_topic AND a.id_question=d.id_question AND a.id_user=:id_user");
         $statement1->bindValue(":id_user", $id_user);
         $statement1->execute();
 
         foreach ($statement1 as $row) {
             $id_question = $row['id_question'];
-            echo "<div class='disscuss-field'>";
-            echo "<div class='topic-title'>";
-            echo "<p><b>{$row['name_topic']}</b>";
-            echo "<br>Oleh : {$row['name_user']}</p></div>";
-            echo "<hr><div class='content-disscuss'>";
-            echo "<p>{$row['content_question']}</p>";
-            echo "<br><a href='view.php?id_question=$id_question'>Show More</a>";
-            echo "</div>";
-            echo "</div>";
+            if ($row['content_answer'] == Null) {
+                echo "<div class='disscuss-field'>";
+                echo "<div class='topic-title'>";
+                echo "<p><b>{$row['id_question']}-{$row['name_topic']}</b>";
+                echo "<br>Oleh : {$row['name_user']}</p></div>";
+                echo "<hr><div class='content-disscuss'>";
+                echo "<p>{$row['content_question']}</p>";
+                echo "<br><a href='view.php?id_question=$id_question'>Lihat Detail</a>";
+                echo "</div>";
+                echo "</div>";
+            } else {
+                echo "<div class='disscuss-field'><br><i style='color:black;'>Telah dijawab oleh Expert</i>";
+                echo "<div class='topic-title'>";
+                echo "<p><b>{$row['id_question']}-{$row['name_topic']}</b>";
+                echo "<br>Oleh : {$row['name_user']}</p></div>";
+                echo "<hr><div class='content-disscuss'>";
+                echo "<p>{$row['content_question']}</p>";
+                echo "<br><a href='view.php?id_question=$id_question'>Lihat Detail</a>";
+                echo "</div>";
+                echo "</div>";
+            }
         }
         ?>
     </div>
@@ -61,11 +73,11 @@ if ($_SESSION['status'] == 1) {
             $id_question = $row['id_question'];
             echo "<div class='disscuss-field'>";
             echo "<div class='topic-title'>";
-            echo "<p><b>{$row['name_topic']}</b>";
+            echo "<p><b>{$row['id_question']}-{$row['name_topic']}</b>";
             echo "<br>Oleh : {$row['name_user']}</p></div>";
             echo "<hr><div class='content-disscuss'>";
             echo "<p>{$row['content_question']}</p>";
-            echo "<br><a href='./view.php?id_question=$id_question'>Show More</a>";
+            echo "<br><a href='./view.php?id_question=$id_question'>Lihat Detail</a>";
             echo "</div>";
             echo "</div>";
         }

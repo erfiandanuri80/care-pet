@@ -10,7 +10,7 @@ include "system/validate.php";
 include "system/connect.php";
 
 $error = "";
-$usernameErr = $phoneErr = $emailErr = $passErr = $cpassErr = ""; //deklarasi variabel validasi inputan login
+$usernameErr = $phoneErr = $emailErr = $passErr = ""; //deklarasi variabel validasi inputan login
 
 
 if ($_POST) {
@@ -19,11 +19,11 @@ if ($_POST) {
     validEmail($emailErr, 'email_user');
     validPhone($phoneErr, 'phone_user');
     validPassword($passErr, 'password_user');
-    validCpassword($cpassErr, 'cpassword_user', 'password_user');
     //PENGECEKAN
-    if ($usernameErr == "" && $emailErr == "" && $phoneErr == "" && $passErr == "" && $cpassErr = "") {
+    if ($usernameErr == "" && $emailErr == "" && $phoneErr == "" && $passErr == "") {
         //PENAMBAHAN DATA USER
         $statement = $db->prepare("INSERT INTO users (id_status, name_user, email_user,password_user,phone_user) VALUES (:id_status, :name_user, :email_user, SHA2(:password_user,0),:phone_user)");
+        //PARAMETER NILAI BERDASARKAN MASUKAN FORM
         $statement->bindValue(":name_user", $_POST['name_user']);
         $statement->bindValue(":phone_user", $_POST['phone_user']);
         $statement->bindValue(":email_user", $_POST['email_user']);
@@ -34,7 +34,7 @@ if ($_POST) {
         header("location: login.php");
         exit();
     } else {
-        echo "<b>gagal</b>";
+        echo "gagal";
     }
 }
 ?>
@@ -43,7 +43,7 @@ if ($_POST) {
 
 <head>
     <title>Sign Up | care-pet</title>
-    <link rel="stylesheet" type="text/css" href="assests/css/styles.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/styles.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 
@@ -92,15 +92,9 @@ if ($_POST) {
                         <div class="error" style="color: red;"> <?php echo $passErr;
                                                                 ?> </div>
                     </div>
-                    <div class="field">
-                        <label>Confirmation Password</label>
-                        <br>
-                        <input type="text" name="cpassword_user" class="inp" placeholder="&emsp;********">
-                        <div class="error" style="color: red;"> <?php echo $cpassErr;
-                                                                ?> </div>
-                    </div>
+
                     <input type="submit" name="submit" value="Submit" class="btn-green"><br>
-                    <p>Already have Account? <a href="login.php">Log in</a></p>
+                    <p>Sudah punya akun? <a href="login.php">Log in</a></p>
                 </form>
             </div>
         </div>

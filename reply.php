@@ -9,16 +9,20 @@ include "system/validate.php";
 
 $error = "";
 $answerErr = "";
+
+
 if ($_POST) {
     required($answerErr, 'content_answer');
     if ($answerErr == "") {
-        $statement = $db->prepare("UPDATE answer SET content_answer=:content_answer WHERE id_question=:id_question");
+        $statement = $db->prepare("UPDATE answer SET content_answer=:content_answer, id_user=:id_user WHERE id_question=:id_question");
         $statement->bindValue(':id_question', $_POST['id_question']);
+        $statement->bindValue(':id_user', $_POST['id_user']);
         $statement->bindValue(':content_answer', $_POST['content_answer']);
         $statement->execute();
 
         header("location: index.php");
         exit();
+    } else {
     }
 }
 
@@ -30,7 +34,7 @@ if ($_POST) {
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="assets/css/styles.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
+    <title>Jawab Pertanyaan | Care-pet</title>
 </head>
 
 <body>
@@ -47,15 +51,13 @@ if ($_POST) {
         &emsp;&emsp;&emsp;&emsp;
 
         <?php
+
         include "pages/expert/replyQuestion.php"; ?>
     </div>
 
-    <div class="container">
-        <div class="footer">
-            <p>Copyright@2020 Care-Pet.Ltd <br> PAW2020-1-A05</p>
-
-        </div>
-    </div>
+    <!--FOOTER -->
+    <?php include "pages/layout/footer.php"; ?>
 </body>
+<!-- END FOOTER -->
 
 </html>

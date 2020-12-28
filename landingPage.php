@@ -20,7 +20,7 @@
     <!--SECTION DISKUSI -->
     <div class="container">
         <div class="question-box">
-            <h1>Latest Disscussion</h1>
+            <h1>Riwayat Diskusi</h1>
         </div>
         <?php
         include "system/connect.php";
@@ -29,7 +29,7 @@
         <div class="sidebar">
             <?php $statement2 = $db->query("SELECT * FROM topic"); ?>
             <div class="topic-list">
-                <h2>Topic List</h2>
+                <h2>Daftar Topic</h2>
                 <ul>
                     <?php foreach ($statement2 as $row2) {
                         echo "<li>{$row2['name_topic']}</li>";
@@ -43,7 +43,7 @@
         <!--FIELD DISSKUSI -->
         <div class="disscussion" id="disscussion">
             <?php
-            $statement1 = $db->query("SELECT * FROM question a, topic b, users c WHERE a.id_user=c.id_user AND a.id_topic=b.id_topic");
+            $statement1 = $db->query("SELECT * FROM question a, topic b, users c WHERE a.id_user=c.id_user AND a.id_topic=b.id_topic ORDER BY a.id_question DESC LIMIT 5");
             foreach ($statement1 as $row) {
                 echo "<div class='disscuss-field'>";
                 echo "<div class='topic-title'>";
@@ -51,16 +51,17 @@
                 echo "<br>Oleh : {$row['name_user']}</p></div>";
                 echo "<hr><div class='content-disscuss'>";
                 echo "<p>{$row['content_question']}</p>";
-                echo "<br><a href='view.php'>Show More</a>";
+                echo "<br><a href='view.php'>Lihat Detail</a>";
                 echo "</div>";
                 echo "</div>";
             }
             ?>
+            <a href="login.php"> Tampilkan Lebih banyak</a>
 
         </div>
 
     </div>
-    <!--END SECTION DISKUSU -->
+    <!--END SECTION DISKUSI -->
     <div class="wrapper"> </div>
     <!--FOOTER -->
     <?php include "pages/layout/footer.php"; ?>

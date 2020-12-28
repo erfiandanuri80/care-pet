@@ -7,8 +7,8 @@
         </div>
         <div class="navbar-right">
             <ul>
-                <li><a href="signup.php">Sign Up</a></li>
-                <li><a href="login.php" class="bt-login">Log in</a></li>
+                <li><a href="signup.php">Sign up</a></li>
+                <li><a href="login.php" class="bt-login">Log In</a></li>
             </ul>
         </div>
     </nav>

@@ -3,7 +3,9 @@ session_start();
 if (!isset($_SESSION["name_user"])) {
     header("location: login.php");
     exit;
-} ?>
+}
+include "system/connect.php";
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,7 +13,7 @@ if (!isset($_SESSION["name_user"])) {
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="assets/css/styles.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
+    <title>Profile | Care-pet</title>
 </head>
 
 <body>
@@ -22,7 +24,7 @@ if (!isset($_SESSION["name_user"])) {
         </div>
         <?php
         $name_session = $_SESSION['name_user'];
-        include "system/connect.php";
+
         $statement = $db->prepare("SELECT * FROM users WHERE name_user=:name_user");
         $statement->bindValue(":name_user", $name_session);
         $statement->execute();

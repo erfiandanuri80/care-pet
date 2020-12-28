@@ -75,7 +75,7 @@ if ($_POST) {
                     <div class="error" style="color: red;"> <?php echo $error;
                                                             ?> </div>
                     <input type="submit" name="submit" value="Submit" class="btn-blue"><br>
-                    <p>Don't have an Account? <a href="signup.php">Sign Up</a></p>
+                    <p>Belum Memiliki akun? <a href="signup.php">Sign Up</a></p>
                 </form>
             </div>
         </div>

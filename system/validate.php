@@ -87,13 +87,3 @@ function validPassword(&$error, $field_name)
         $error = "";
     }
 }
-function validCpassword(&$error, $field_name, $temp)
-{
-    if (!isset($_POST[$field_name]) || empty($_POST[$field_name])) {
-        $error = "this field is required";
-    } else if (($_POST[$field_name] == $_POST[$temp])) {
-        $error = "";
-    } else {
-        $error = "Your password and confirmation password do not match";
-    }
-}

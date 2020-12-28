@@ -21,7 +21,7 @@
    <div class="container">
        <div class="main-content2">
            <div class="title">
-               <h1>Our Fiture</h1>
+               <h1>Fitur Kami</h1>
            </div>
            <div class="fiture">
                <div class="fit-1">
