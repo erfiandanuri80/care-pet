@@ -12,27 +12,45 @@ include "system/connect.php";
 
 $error = "";
 $contentErr = "";
-
-//PENGAMBILAN NILAI VARIABEL DARI URL
+//PENGAMBILAN NILAI SESI DARI VARIABEL URL
 if (!isset($_SESSION["id_question"])) {
     $_SESSION["id_question"] = $_GET['id_question'];
 } else {
     $id_question = $_SESSION["id_question"];
 }
 
-if ($_POST) {
-    required($contentErr, $_POST['content_question']);
-    if ($contentErr == "") {
-        $statement = $db->prepare("UPDATE question SET content_question=:content_question WHERE id_question=:id_question");
-        $statement->bindValue(':content_question', $_POST['content_question']);
-        $statement->bindValue(':id_question', $_SESSION['id_question']);
-        $statement->execute();
+//VALIDASI EDIT PERTANYAAN CLIENT
+if ($_SESSION['status'] == 1) {
+    if ($_POST) {
+        required($contentErr, 'content_question');
+        if ($contentErr == "") {
+            $statement = $db->prepare("UPDATE question SET content_question=:content_question WHERE id_question=:id_question");
+            $statement->bindValue(':content_question', $_POST['content_question']);
+            $statement->bindValue(':id_question', $_SESSION['id_question']);
+            $statement->execute();
 
-        unset($_SESSION['id_question']);
-        header("location: index.php");
-        exit();
-    } else {
-        echo $contentErr;
+            //JIKA BERHASIL DI INPUT SESSION ID PERTANYAAN DI UNSET
+            unset($_SESSION['id_question']);
+            header("location: index.php");
+            exit();
+        }
+    }
+    //VALIDASI EDIT JAWABAN EXPERT
+} else if ($_SESSION['status'] == 2) {
+    if ($_POST) {
+        required($contentErr, 'content_answer');
+        if ($contentErr == "") {
+
+            $statement = $db->prepare("UPDATE answer SET content_answer=:content_answer WHERE id_question=:id_question");
+            $statement->bindValue(':content_answer', $_POST['content_answer']);
+            $statement->bindValue(':id_question', $_SESSION['id_question']);
+            $statement->execute();
+
+            //JIKA BERHASIL DI INPUT SESSION ID PERTANYAAN DI UNSET
+            unset($_SESSION['id_question']);
+            header("location: index.php");
+            exit();
+        }
     }
 }
 ?>
@@ -43,55 +61,22 @@ if ($_POST) {
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="assets/css/styles.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit Pertanyaan | Care-pet</title>
+    <title>Edit | Care-pet</title>
 </head>
 
 <body>
     <?php
     include "pages/layout/userHeader.php"; ?>
-
     <div class="wrapper">&emsp;</div>
+    <?php
 
-    <div class="container">
-        <div class="question-box">
-            <a href="index.php" class="btn-white">Kembali ke diskusi</a>
-        </div>
-        <div class="wrapper"></div>
-        &emsp;&emsp;&emsp;&emsp;
-        <?php
-        if ($_SESSION['status'] == 1) {
-            $id_question = $_SESSION["id_question"];
-            $sql = $db->query("SELECT * FROM question a, users b, topic c WHERE a.id_user=b.id_user AND c.id_topic=a.id_topic AND id_question=$id_question");
-            foreach ($sql as $row) {
-        ?>
-                <div class="form-question">
-                    <h1>Edit Pertanyaan</h1>
-                    <div class="form-field">
-                        <form action="edit.php" method="POST">
-                            <div class="field">
-                                <br>
-                                <input type="text" name="id_question" value="<?php echo "{$row['id_question']}"; ?>" disabled>
-                            </div>
-                            <div class="field">
-                                <label>Topic</label>
-                                <br>
-                                <input type="text" name="name_topic" value="<?php echo "{$row['name_topic']}"; ?>" disabled>
-                            </div>
-                            <div class="field">
-                                <label>Pertanyaan</label>
-                                <br>
-                                <div class="error" style="color: red;"> <?php echo $contentErr;
-                                                                        ?> </div>
-                                <textarea name="content_question" cols="30" rows="15"><?php echo "{$row['content_question']}"; ?></textarea>
-                            </div>
-                            <input type="submit" value="Submit" class="btn-green">
-                        </form>
-                    </div>
-                </div>
-        <?php }
-        } ?>
-
-    </div>
+    if ($_SESSION['status'] == 1) {
+        //IMPORT BAGIAN EDIT PERTANYAAN CLIENT
+        include "pages/client/editQuestion.php";
+    } else {
+        //IMPORT BAGIAN EDIT JAWABAN EXPERT
+        include "pages/expert/editReply.php";
+    } ?>
     <?php include "pages/layout/footer.php";
     ?>
 </body>

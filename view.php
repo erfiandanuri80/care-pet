@@ -32,15 +32,15 @@ if (!isset($_SESSION["name_user"])) {
         <?php
         //PENGECEKAN STATUS USER CLIENT(1) ATAU EXPERT(2)
         if ($_SESSION['status'] == 2) {
-            echo "<h1>Answer Question</h1>";
+            echo "<h1>Jawaban Pertanyaan</h1>";
         } else if ($_SESSION['status'] == 1) {
-            echo "<h1>Answered Question</h1>";
+            echo "<h1>Jawaban Pertanyaan</h1>";
         } ?>
 
         <div class="form-field">
             <div class="field">
                 <p><?php
-                    //MENAMPILKAN FIELD VIEW SUATU DISKUSI BERDASARKAN 
+                    //MENAMPILKAN FIELD VIEW SUATU DISKUSI BERDASARKAN PERTANYAAN
                     $id_question = $_GET['id_question'];
                     include "system/connect.php";
                     $statement = $db->query("SELECT * FROM answer a,users b,question c WHERE a.id_user=b.id_user AND a.id_question=c.id_question AND c.id_question=$id_question");

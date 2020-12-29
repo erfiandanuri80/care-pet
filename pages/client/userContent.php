@@ -7,9 +7,9 @@
                 <p>Web Care-Pet forum berperan sebagai konsultasi untuk hewan peliharaan. Melalui website ini para pemilik hewan dapat bertanya maupun konsultasi seputar permasalahan yang tengah dihadapi. Pertanyaan-pertanyaan yang masuk akan segera dijawab oleh dokter-dokter hewan.</p>
                 <br>
 
-                <input type="text" name="searchtopic" id="searchtopic">
+                <input type="text" name="searchtopic" id="searchtopic" disabled value="ini hanya hiasan belum ada fungsi tertentu karena tidak dibutuhkan di kriteria">
 
-                <a href="#">Search</a>
+                <a href="index.php">Search</a>
 
             </div>
 

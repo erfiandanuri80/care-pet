@@ -24,7 +24,6 @@
             <h1>Riwayat Diskusi</h1>
         </div>
         <?php
-        include "system/connect.php";
         ?>
         <!--SIDEBAR TOPIK -->
         <div class="sidebar">

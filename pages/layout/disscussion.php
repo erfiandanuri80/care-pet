@@ -10,7 +10,7 @@ if ($_SESSION['status'] == 2) {
             <h2>Topic List</h2>
             <ul>
                 <?php foreach ($statement2 as $row2) {
-                    echo "<li><a href='#'>{$row2['name_topic']}</a></li>";
+                    echo "<li>{$row2['name_topic']}</li>";
                 }
                 ?>
             </ul>
@@ -62,7 +62,7 @@ if ($_SESSION['status'] == 2) {
             <h2>Topic List</h2>
             <ul>
                 <?php foreach ($statement2 as $row2) {
-                    echo "<li><a href='#'>{$row2['name_topic']}</a></li>";
+                    echo "<li>{$row2['name_topic']}</li>";
                 }
                 ?>
             </ul>

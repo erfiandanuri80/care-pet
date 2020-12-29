@@ -59,7 +59,9 @@ if ($_SESSION['status'] == 1) {
         }
         ?>
     </div>
-<?php } else if ($_SESSION['status'] == 2) {
+<?php }
+// JIKA STATUS EXPERT DAN MEMFILTER BAGIAN PERTANYAAN MANA SAJA YANG TELAH DIJAWABNYA
+else if ($_SESSION['status'] == 2) {
 
 ?>
     <div class="sidebar">
@@ -76,11 +78,13 @@ if ($_SESSION['status'] == 1) {
     </div>&emsp;&emsp;&emsp;&emsp;
     <div class="disscussion" id="disscussion">
         <?php
+        //BERDASARKAN SESSION ID USERNYA
         $id_user = $_SESSION['id_user'];
         $statement1 = $db->prepare("SELECT * FROM question a, answer b, users c ,topic d WHERE a.id_user=c.id_user AND a.id_question=b.id_question AND d.id_topic=a.id_topic AND b.id_user=:id_user ORDER BY a.id_question DESC");
         $statement1->bindValue(":id_user", $id_user);
         $statement1->execute();
 
+        //MENAMPILKAN ISIAN FIELD DISKUSI SESUAI FILTER YAITU BERDASARKAN PERTANYAAN YANG SUDAH IYA JAWAB
         foreach ($statement1 as $row) {
             $id_question = $row['id_question'];
             echo "<div class='disscuss-field'>";

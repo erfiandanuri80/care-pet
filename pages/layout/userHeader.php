@@ -8,7 +8,15 @@
         </div>
         <div class="navbar-right">
             <ul>
-                <li><a href="profile.php" class="bt-login"><?php echo $_SESSION['name_user']; ?></a></li>
+                <li><a href="profile.php" class="bt-login"><?php
+                                                            echo $_SESSION['name_user'];
+                                                            if ($_SESSION['status'] == 1) {
+                                                                echo "<br><sup>[client]</sup>";
+                                                            } else {
+                                                                echo "<br><sup>[expert]</sup>";
+                                                            }
+                                                            ?></a></li>
+
             </ul>
         </div>
     </nav>

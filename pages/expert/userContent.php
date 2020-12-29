@@ -8,10 +8,9 @@
                     Melalui web ini dokter dapat membantu untuk menjawab pertanyaan seputar kesehatan hewan para owner pemilik pet.
                 </p>
                 <br>
+                <input type="text" name="searchtopic" id="searchtopic" disabled value="ini hanya hiasan belum ada fungsi tertentu karena tidak dibutuhkan di kriteria">
 
-                <input type="text" name="searchtopic" id="searchtopic">
-
-                <a href="#">Search</a>
+                <a href="index.php">Search</a>
             </div>
 
         </div>
