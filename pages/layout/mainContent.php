@@ -11,7 +11,7 @@
 
            </div>
            <div class="cont-right">
-               <img src="assets/img/hero.jpg" alt="https://www.jesuisunanimal.fr/wp-content/uploads/2019/03/adoption-chien-chat.jpg">
+               <img src="assets/img/mainhero.jpg" alt="unsplash.com/photos/LGG5P7KCziU">
            </div>
        </div>
    </div>
@@ -26,7 +26,7 @@
            <div class="fiture">
                <div class="fit-1">
                    <div class="imgfit">
-                       <img src="assets/img/gambar2.png" alt="im">
+                       <img src="assets/img/pet-care.png" alt="https://www.flaticon.com/free-icon/pet-care_1810042?term=care%20pet&page=2&position=73&related_item_id=1810042">
                    </div>
                    <p>
                        Care-pet menyediakan forum diskusi secara langsung dengan dokter hewan. Dengan adanya forum diskusi kami akan membantu para owner pemilik hewan dengan sebuah saran yang akan di konsultasikan.
@@ -34,7 +34,7 @@
                </div>
                <div class="fit-1">
                    <div class="imgfit">
-                       <img src="assets/img/gambar2.png" alt="im">
+                       <img src="assets/img/capsule.png" alt="https://www.flaticon.com/free-icon/capsule_3788924?term=pet%20care&page=2&position=2&related_item_id=3788924">
                    </div>
                    <p>
                        Kami mencoba memberikan fitur-fitur yang pada umumnya untuk membantu para owner-pet dalam cara mengatasi berbagai macam penyakit yang mungkin saja menyerang hewan peliharaan. Namun fitur kami tidak disarankan untuk berkonsultasi seputar permasalahan serius yang tengah dihadapi oleh hewan peliharaan.
@@ -42,7 +42,7 @@
                </div>
                <div class="fit-1">
                    <div class="imgfit">
-                       <img src="assets/img/gambar2.png" alt="im">
+                       <img src="assets/img/veterinary.png" alt="https://www.flaticon.com/free-icon/veterinary_784184?term=care%20pet&page=2&position=40&related_item_id=784184">
                    </div>
                    <p>
                        Fitur kami memberikan kenyamanan dan kemudahan pada para owner-pet untuk berkonsultasi secara online tanpa perlu datang ke klinik terdekat.

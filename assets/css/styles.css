@@ -132,7 +132,10 @@ body {
   margin-bottom: 350px;
 }
 .main-content2 .fiture .fit-1 {
-  width: 33%;
+  width: 28%;
+  padding-left: 30px;
+  padding-right: 30px;
+  margin-bottom: 30px;
   height: 100%;
   float: left;
 }
@@ -140,6 +143,7 @@ body {
   width: 20%;
   height: 100px;
   margin: auto;
+  margin-bottom: 50px;
 }
 .main-content2 .fiture .fit-1 .imgfit img {
   max-width: 100px;

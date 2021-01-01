@@ -15,13 +15,13 @@
                 <div class="disscuss-field">
                     <div class="topic-title">
 
-                        <p>
-                            <b><?php echo "{$row['name_topic']}";
-                                $id_questionNow = $row['id_question']; ?>
-                            </b>
-                            <br><br> dari : <?php echo "{$row['name_user']}"; ?>
-                            <hr>
-                        </p>
+
+                        <b><?php echo "{$row['name_topic']}";
+                            $id_questionNow = $row['id_question']; ?>
+                        </b>
+                        <br><br> dari : <?php echo "{$row['name_user']}"; ?>
+                        <hr>
+
                         <p><?php echo "{$row['content_question']}"; ?>
                         </p>
                     </div>

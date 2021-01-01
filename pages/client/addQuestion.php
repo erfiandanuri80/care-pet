@@ -1,8 +1,8 @@
 <!-- BAGIAN UNTUK FORM BUAT PERTANYAAN-->
 <div class="form-question">
     <h1>Buat Pertanyaan</h1>
-    <form action="compose.php" method="POST">
-        <div class="form-field">
+    <div class="form-field">
+        <form action="compose.php" method="POST">
             <div class="field">
                 <label>Topic</label>
                 <br>
@@ -18,5 +18,6 @@
 
             </div>
             <input type="submit" value="Submit" class="btn-green">
-    </form>
+        </form>
+    </div>
 </div>

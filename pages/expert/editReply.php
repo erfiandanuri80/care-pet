@@ -14,10 +14,9 @@
                     <div class="disscuss-field">
                         <div class="topic-title">
 
-                            <p><?php echo "<b>{$row['content_question']}</b>"; ?>
-                                <br><br>dari : <?php echo "{$row['name_user']}"; ?>
-                                <hr>
-                            </p>
+                            <?php echo "<b>{$row['content_question']}</b>"; ?>
+                            <br><br>dari : <?php echo "{$row['name_user']}"; ?>
+                            <hr>
                         </div>
                     </div>
                 </div>

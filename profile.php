@@ -8,7 +8,7 @@ if (!isset($_SESSION["name_user"])) {
 include "system/connect.php";
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 
 <head>
     <meta charset="UTF-8">
@@ -21,7 +21,7 @@ include "system/connect.php";
     <!--HALAMAN PROFILE-->
     <div class="container">
         <div class="content-left">
-            <a href="index.php"><img src="assets/img/logo.png"></a>
+            <a href="index.php"><img src="assets/img/logo.png" alt="logo"></a>
             <div class="title">PRO-<br>FILE</div>
         </div>
         <?php

@@ -39,7 +39,7 @@ if ($_POST) {
 }
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 
 <head>
     <title>Sign Up | care-pet</title>
@@ -50,7 +50,7 @@ if ($_POST) {
 <body>
     <div class="container">
         <div class="content-left">
-            <a href="index.php"><img src="assets/img/logo.png"></a>
+            <a href="index.php"><img src="assets/img/logo.png" alt="logo"></a>
             <div class="title">SIGN- <br>UP</div>
         </div>
         <div class="content-right-signup">

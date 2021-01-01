@@ -50,7 +50,7 @@ if ($_POST) {
     <!--HALAMAN LOGIN-->
     <div class="container">
         <div class="content-left">
-            <a href="index.php"><img src="assets/img/logo.png"></a>
+            <a href="index.php"><img src="assets/img/logo.png" alt="logo"></a>
             <div class="title">LOG-<br> IN</div>
         </div>
         <div class="content-right">

@@ -36,7 +36,7 @@ if ($_POST) {
 
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 
 <head>
     <meta charset="UTF-8">
@@ -50,7 +50,7 @@ if ($_POST) {
 
     <div class="container">
         <div class="content-left">
-            <a href="index.php"><img src="assets/img/logo.png"></a>
+            <a href="index.php"><img src="assets/img/logo.png" alt="logo"></a>
             <div class="title">PRO- <br>FILE</div>
         </div>
         <?php
@@ -65,45 +65,44 @@ if ($_POST) {
         ?>
             <div class="content-right">
                 <div class="form">
-                    <a href="profile.php">
-                        < Kembali</a> <br>
-                            <!--FORM ISIAN EDIT PROFILE-->
-                            <form action="editprofile.php" method="POST">
-                                <div class="field">
-                                    <input type="text" name="id_user" class="inp" value="<?php echo "{$row['id_user']}"; ?>" hidden>
-                                </div>
-                                <div class="field">
-                                    <label>Username</label>
-                                    <br>
-                                    <input type="text" name="name_user" class="inp" value="<?php echo "{$row['name_user']}"; ?>">
-                                    <div class="error" style="color: red;"> <?php echo $usernameErr;
-                                                                            ?> </div>
-                                </div>
-                                <div class="field">
-                                    <label>Nomor Telepon</label>
-                                    <br>
-                                    <input type="text" name="phone_user" class="inp" value="<?php echo "{$row['phone_user']}"; ?>">
-                                    <div class="error" style="color: red;"> <?php echo $phoneErr;
-                                                                            ?> </div>
-                                </div>
-                                <div class="field">
-                                    <label>Alamat Email</label>
-                                    <br>
-                                    <input type="text" name="email_user" class="inp" value="<?php echo "{$row['email_user']}"; ?>" disabled>
-                                </div>
-                                <div class="field">
-                                    <label>Password</label>
-                                    <br>
-                                    <input type="text" name="password_user" class="inp" placeholder="&emsp;********">
-                                    <div class="error" style="color: red;"> <?php echo $passErr;
-                                                                            ?> </div>
-                                </div>
+                    <br>
+                    <!--FORM ISIAN EDIT PROFILE-->
+                    <form action="editprofile.php" method="POST">
+                        <div class="field">
+                            <input type="text" name="id_user" class="inp" value="<?php echo "{$row['id_user']}"; ?>" hidden>
+                        </div>
+                        <div class="field">
+                            <label>Username</label>
+                            <br>
+                            <input type="text" name="name_user" class="inp" value="<?php echo "{$row['name_user']}"; ?>">
+                            <div class="error" style="color: red;"> <?php echo $usernameErr;
+                                                                    ?> </div>
+                        </div>
+                        <div class="field">
+                            <label>Nomor Telepon</label>
+                            <br>
+                            <input type="text" name="phone_user" class="inp" value="<?php echo "{$row['phone_user']}"; ?>">
+                            <div class="error" style="color: red;"> <?php echo $phoneErr;
+                                                                    ?> </div>
+                        </div>
+                        <div class="field">
+                            <label>Alamat Email</label>
+                            <br>
+                            <input type="text" name="email_user" class="inp" value="<?php echo "{$row['email_user']}"; ?>" disabled>
+                        </div>
+                        <div class="field">
+                            <label>Password</label>
+                            <br>
+                            <input type="text" name="password_user" class="inp" placeholder="&emsp;********">
+                            <div class="error" style="color: red;"> <?php echo $passErr;
+                                                                    ?> </div>
+                        </div>
 
-                                <input type="submit" name="submit" value="Submit" class="btn-blue"><br>
-                                <br>
+                        <input type="submit" name="submit" value="Submit" class="btn-blue"><br>
+                        <br>
 
-                            </form>
-                        <?php } ?>
+                    </form>
+                <?php } ?>
 
                 </div>
             </div>

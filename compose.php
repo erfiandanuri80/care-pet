@@ -47,7 +47,7 @@ if ($_POST) {
     }
 } ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 
 <head>
     <meta charset="UTF-8">
@@ -57,6 +57,7 @@ if ($_POST) {
 </head>
 
 <body>
+
     <?php
     //import navbar
     include "pages/layout/userHeader.php"; ?>
